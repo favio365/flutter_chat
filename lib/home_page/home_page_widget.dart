@@ -78,7 +78,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     }.withoutNulls,
                   );
                 },
-                text: 'Button',
+                text: 'fran',
+                options: FFButtonOptions(
+                  width: 130,
+                  height: 40,
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  context.pushNamed(
+                    'myChatRoom',
+                    queryParams: {
+                      'chatRoom': serializeParam(
+                        FFAppState().chatRoomId,
+                        ParamType.String,
+                      ),
+                      'user': serializeParam(
+                        FFAppState().favioId,
+                        ParamType.String,
+                      ),
+                    }.withoutNulls,
+                  );
+                },
+                text: 'fav',
                 options: FFButtonOptions(
                   width: 130,
                   height: 40,
