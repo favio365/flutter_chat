@@ -69,13 +69,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? LoginWidget() : HomePageWidget(),
+          appStateNotifier.loggedIn ? HomePageWidget() : Login2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? LoginWidget() : HomePageWidget(),
+              appStateNotifier.loggedIn ? HomePageWidget() : Login2Widget(),
           routes: [
             FFRoute(
               name: 'HomePage',
@@ -106,6 +106,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 chatRoom: params.getParam('chatRoom', ParamType.String),
                 user: params.getParam('user', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'login2',
+              path: 'login2',
+              builder: (context, params) => Login2Widget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -265,7 +270,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/homePage';
+            return '/login2';
           }
           return null;
         },
